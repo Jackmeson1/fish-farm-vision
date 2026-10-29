@@ -7,7 +7,7 @@
 <a href="media/fish-farm-vision.mp4">Watch the 80-second video.</a></sub></p>
 
 I spent a day testing what public datasets and current vision models can do for cameras on fish farms. Claude Code
-wrote and ran the experiments on four cloud GPUs. I picked the questions and checked the results. Each setting was
+wrote and ran the experiments on rented cloud GPUs. I picked the questions and checked the results. Each setting was
 run once, on two public datasets, so read the numbers as a first look rather than a benchmark.
 
 ## What I found
@@ -25,7 +25,7 @@ run once, on two public datasets, so read the numbers as a first look rather tha
   one farm. Open models up to 32B parameters did no better than a coin flip. Synthetic training data, detectors used
   without training on this data, and a "dead fish stay put" rule all failed.
 
-## Data and hardware
+## Data and compute
 
 | Dataset | What it is | Used for | License |
 |---|---|---|---|
@@ -34,12 +34,11 @@ run once, on two public datasets, so read the numbers as a first look rather tha
 | UIEB | 890 underwater photos, each with a chosen enhanced version as reference | training and scoring NAFNet | not included here |
 | Fish-Vista | Museum photos of preserved fish. I used only the 1,499 CC0 and CC BY photos. | synthetic dead fish | CC0 / CC BY |
 
-Compute was rented on Google Colab: three NVIDIA RTX PRO 6000 Blackwell GPUs (96 GB each) and one A100, about 100 Colab
-compute units over one day. On one RTX PRO 6000, training on all 10,387 Brackish training frames took 11 minutes for
-YOLO26-S, 71 minutes for RF-DETR-M and 95 minutes for YOLO26-L.
+Compute was a few rented cloud GPUs for about a day. Training one detector took between ten minutes and an hour and a
+half.
 
-The dead-or-alive test used GPT-6, Gemini 4 and Claude Opus 5.5, each through its maker's command-line agent, and
-Qwen3-VL 2B, 8B and 32B on one GPU.
+The dead-or-alive test compared three large commercial multimodal models, called A, B and C below, with the open
+Qwen3-VL models (2B, 8B and 32B) running on a single GPU.
 
 **How to read the scores.** Detection scores are COCO AP, from 0 to 1. To score well, a detector has to find each
 animal, name it correctly and draw a tight box. AP50 is a looser version that accepts any box overlapping the true one
@@ -215,7 +214,7 @@ Large multimodal models also worked when given a short checklist. I cut out 120 
 dead, 60 alive). Each one became three tiles: the whole photo with the fish boxed, a close-up, and the same spot in the
 neighbouring photo. Every model got [the same checklist](data/dead-or-alive-120/prompt_frontier_models.txt): belly
 up and pale, lying on the plate, body rigid, no motion blur, and so on. Each one judged all 120 without seeing the
-labels. Claude's answers were saved before the labels were revealed.
+labels. The labels stayed sealed until every model had answered.
 
 | Dead (all models right) | Alive (all models right) | Labelled dead, all three large models said alive |
 |---|---|---|
@@ -224,7 +223,7 @@ labels. Claude's answers were saved before the labels were revealed.
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="figures/judges-dark.svg">
-    <img src="figures/judges.svg" alt="Bar chart of dead-or-alive accuracy: vote of three large models 96%, Gemini 4 95%, Claude Opus 5.5 91%, GPT-6 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.">
+    <img src="figures/judges.svg" alt="Bar chart of dead-or-alive accuracy: vote of three large models 96%, large model A 95%, B 91%, C 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.">
   </picture>
 </p>
 
@@ -298,9 +297,9 @@ and so did the largest general models.
 
 ## How this was made
 
-Claude Code (Claude Opus 5.5) wrote the code, ran every experiment on Colab and drafted this page and the video. I
-chose what to test, steered the work toward the dead-fish problem, and checked the numbers. Before the runs, GPT-6 and
-Gemini 4 reviewed the plan with web search. Their reviews led to the controlled split test and to the train/test grid
+Claude Code wrote the code, ran every experiment on rented cloud GPUs and drafted this page and the video. I
+chose what to test, steered the work toward the dead-fish problem, and checked the numbers. Before the runs, two other
+large models reviewed the plan with web search. Their reviews led to the controlled split test and to the train/test grid
 in the enhancement section.
 
 ## Licenses and credits

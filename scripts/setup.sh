@@ -1,5 +1,5 @@
 #!/bin/bash
-# Machine setup (tested on a Google Colab VM with an RTX PRO 6000, Blackwell sm_120): venv, data, sources, split.
+# Machine setup (tested on a cloud GPU VM with CUDA): venv, data, sources, split.
 # Expects this scripts/ folder at /root/fish/scripts.
 set -euo pipefail
 R=/root/fish

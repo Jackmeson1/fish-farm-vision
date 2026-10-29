@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="332" viewBox="0 0 760 332" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" role="img" aria-label="Bar chart of dead-or-alive accuracy: vote of three large models 96%, Gemini 4 95%, Claude Opus 5.5 91%, GPT-6 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.">
-<title>Bar chart of dead-or-alive accuracy: vote of three large models 96%, Gemini 4 95%, Claude Opus 5.5 91%, GPT-6 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="332" viewBox="0 0 760 332" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" role="img" aria-label="Bar chart of dead-or-alive accuracy: vote of three large models 96%, large model A 95%, B 91%, C 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.">
+<title>Bar chart of dead-or-alive accuracy: vote of three large models 96%, large model A 95%, B 91%, C 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.</title>
 <text x="0.0" y="20.0" font-size="16" fill="#f0efec" text-anchor="start" font-weight="600">Only the large models could tell dead fish from live ones</text>
 <text x="0.0" y="41.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">Share judged correctly, 120 boxed fish (60 dead, 60 alive) from the later RAS-MortDB sessions, same checklist</text>
 <rect x="0.0" y="65.0" width="10.0" height="10.0" rx="2" fill="#3987e5"/>
@@ -21,13 +21,13 @@
 <text x="240.0" y="107.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">Vote of the three large models</text>
 <path d="M250.0,94.0 H679.0 Q683.0,94.0 683.0,98.0 V108.0 Q683.0,112.0 679.0,112.0 H250.0 Z" fill="#3987e5"/>
 <text x="689.0" y="107.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">96%</text>
-<text x="240.0" y="137.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">Gemini 4</text>
+<text x="240.0" y="137.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">Large model A</text>
 <path d="M250.0,124.0 H675.4 Q679.4,124.0 679.4,128.0 V138.0 Q679.4,142.0 675.4,142.0 H250.0 Z" fill="#3987e5"/>
 <text x="685.4" y="137.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">95%</text>
-<text x="240.0" y="167.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">Claude Opus 5.5</text>
+<text x="240.0" y="167.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">Large model B</text>
 <path d="M250.0,154.0 H656.4 Q660.4,154.0 660.4,158.0 V168.0 Q660.4,172.0 656.4,172.0 H250.0 Z" fill="#3987e5"/>
 <text x="666.4" y="167.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">91%</text>
-<text x="240.0" y="197.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">GPT-6</text>
+<text x="240.0" y="197.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">Large model C</text>
 <path d="M250.0,184.0 H615.3 Q619.3,184.0 619.3,188.0 V198.0 Q619.3,202.0 615.3,202.0 H250.0 Z" fill="#3987e5"/>
 <text x="625.3" y="197.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">82%</text>
 <text x="240.0" y="227.0" font-size="13" fill="#f0efec" text-anchor="end" font-weight="400">Qwen3-VL 32B</text>

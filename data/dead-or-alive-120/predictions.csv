@@ -1,4 +1,4 @@
-id,label,gemini_4,claude_opus_5_5,gpt_6,vote_of_3,qwen3_vl_2b_checklist,qwen3_vl_2b_no_checklist,qwen3_vl_8b_checklist,qwen3_vl_8b_no_checklist,qwen3_vl_32b_checklist,qwen3_vl_32b_no_checklist
+id,label,large_model_a,large_model_b,large_model_c,vote_of_3,qwen3_vl_2b_checklist,qwen3_vl_2b_no_checklist,qwen3_vl_8b_checklist,qwen3_vl_8b_no_checklist,qwen3_vl_32b_checklist,qwen3_vl_32b_no_checklist
 S000,dead,dead,dead,dead,dead,dead,live,live,dead,dead,live
 S001,live,live,live,live,live,dead,live,live,dead,dead,live
 S002,live,live,live,live,live,dead,live,live,dead,dead,live

@@ -200,8 +200,8 @@ def label_curve(t, suf):
 
 def judges(t, suf):
     sc = json.load(open(os.path.join(ROOT, 'data/dead-or-alive-120/scores.json')))
-    pick = [('Vote of the three large models', 'vote_of_3', 's1'), ('Gemini 4', 'gemini_4', 's1'),
-            ('Claude Opus 5.5', 'claude_opus_5_5', 's1'), ('GPT-6', 'gpt_6', 's1'),
+    pick = [('Vote of the three large models', 'vote_of_3', 's1'), ('Large model A', 'large_model_a', 's1'),
+            ('Large model B', 'large_model_b', 's1'), ('Large model C', 'large_model_c', 's1'),
             ('Qwen3-VL 32B', 'qwen3_vl_32b_checklist', 's2'), ('Qwen3-VL 8B', 'qwen3_vl_8b_checklist', 's2'),
             ('Qwen3-VL 2B', 'qwen3_vl_2b_checklist', 's2')]
     items = [(lab, sc[k]['accuracy'], key) for lab, k, key in pick]
@@ -209,8 +209,8 @@ def judges(t, suf):
          'Share judged correctly, 120 boxed fish (60 dead, 60 alive) from the later RAS-MortDB sessions, same checklist',
          items, 1.0, [0, 0.25, 0.5, 0.75, 1.0], lambda v: f'{v:.0%}', ref=(0.5, 'coin flip'), label_w=250,
          legend=[('s1', 'large commercial models'), ('s2', 'open models that fit on one GPU')],
-         alt='Bar chart of dead-or-alive accuracy: vote of three large models 96%, Gemini 4 95%, Claude Opus 5.5 91%, '
-             'GPT-6 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.')
+         alt='Bar chart of dead-or-alive accuracy: vote of three large models 96%, large model A 95%, B 91%, '
+             'C 82%, Qwen3-VL 32B 52%, 8B 50%, 2B 50%. Coin flip is 50%.')
 
 
 def pipeline(t, suf):

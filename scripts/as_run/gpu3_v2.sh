@@ -1,5 +1,5 @@
 #!/bin/bash
-# fish3 (recreated after Colab reclaimed the first one): full setup, then YOLOX-L on a dedicated GPU and its test eval.
+# fish3 (recreated after the first machine was reclaimed): full setup, then YOLOX-L on a dedicated GPU and its test eval.
 cd /root/fish
 bash scripts/setup_box.sh
 P=/root/fish/venv/bin/python

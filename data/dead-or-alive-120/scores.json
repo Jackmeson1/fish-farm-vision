@@ -1,17 +1,17 @@
 {
- "gemini_4": {
+ "large_model_a": {
   "accuracy": 0.95,
   "dead_precision": 0.95,
   "dead_recall": 0.95,
   "said_dead": 60
  },
- "claude_opus_5_5": {
+ "large_model_b": {
   "accuracy": 0.908,
   "dead_precision": 0.902,
   "dead_recall": 0.917,
   "said_dead": 61
  },
- "gpt_6": {
+ "large_model_c": {
   "accuracy": 0.817,
   "dead_precision": 0.817,
   "dead_recall": 0.817,

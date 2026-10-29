@@ -17,9 +17,9 @@ const Panel: React.FC<{src: string}> = ({src}) => (
 
 const rows: Row[] = [
   {label: "Vote of three large models", value: 96, color: C.blue, text: "96%"},
-  {label: "Gemini 4", value: 95, color: C.blue, text: "95%"},
-  {label: "Claude Opus 5.5", value: 91, color: C.blue, text: "91%"},
-  {label: "GPT-6", value: 82, color: C.blue, text: "82%"},
+  {label: "Large model A", value: 95, color: C.blue, text: "95%"},
+  {label: "Large model B", value: 91, color: C.blue, text: "91%"},
+  {label: "Large model C", value: 82, color: C.blue, text: "82%"},
   {label: "Qwen3-VL 32B", value: 52, color: C.orange, text: "52%"},
   {label: "Qwen3-VL 8B", value: 50, color: C.orange, text: "50%"},
   {label: "Qwen3-VL 2B", value: 50, color: C.orange, text: "50%"},
