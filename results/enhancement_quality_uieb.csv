@@ -1,0 +1,7 @@
+method,PSNR,SSIM,sec_per_image
+none (raw image),17.461,0.7843,0.1141
+clahe,17.975,0.8281,0.1149
+grayworld,17.231,0.7826,0.119
+grayworld_clahe,17.904,0.8255,0.1218
+msrcr,14.735,0.7746,2.4926
+nafnet,22.042,0.8937,0.1617

@@ -1,0 +1,62 @@
+{
+ "gemini_4": {
+  "accuracy": 0.95,
+  "dead_precision": 0.95,
+  "dead_recall": 0.95,
+  "said_dead": 60
+ },
+ "claude_opus_5_5": {
+  "accuracy": 0.908,
+  "dead_precision": 0.902,
+  "dead_recall": 0.917,
+  "said_dead": 61
+ },
+ "gpt_6": {
+  "accuracy": 0.817,
+  "dead_precision": 0.817,
+  "dead_recall": 0.817,
+  "said_dead": 60
+ },
+ "vote_of_3": {
+  "accuracy": 0.958,
+  "dead_precision": 0.982,
+  "dead_recall": 0.933,
+  "said_dead": 57
+ },
+ "qwen3_vl_2b_checklist": {
+  "accuracy": 0.5,
+  "dead_precision": 0.5,
+  "dead_recall": 1.0,
+  "said_dead": 120
+ },
+ "qwen3_vl_2b_no_checklist": {
+  "accuracy": 0.492,
+  "dead_precision": 0.462,
+  "dead_recall": 0.1,
+  "said_dead": 13
+ },
+ "qwen3_vl_8b_checklist": {
+  "accuracy": 0.5,
+  "dead_precision": 0.0,
+  "dead_recall": 0.0,
+  "said_dead": 0
+ },
+ "qwen3_vl_8b_no_checklist": {
+  "accuracy": 0.45,
+  "dead_precision": 0.421,
+  "dead_recall": 0.267,
+  "said_dead": 38
+ },
+ "qwen3_vl_32b_checklist": {
+  "accuracy": 0.517,
+  "dead_precision": 0.512,
+  "dead_recall": 0.683,
+  "said_dead": 80
+ },
+ "qwen3_vl_32b_no_checklist": {
+  "accuracy": 0.508,
+  "dead_precision": 0.667,
+  "dead_recall": 0.033,
+  "said_dead": 3
+ }
+}

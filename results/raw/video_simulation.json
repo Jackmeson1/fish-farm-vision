@@ -1,0 +1,40 @@
+{
+ "calibration": {
+  "disp_max": 0.0035,
+  "motion_ratio_max": 2.296,
+  "train_dead_tracks": 89,
+  "train_tracks": 262
+ },
+ "test": {
+  "single_frame (any frame dead >= 0.5)": {
+   "recall": 1.0,
+   "dead_tracks": 23,
+   "false_alarm_tracks": 1,
+   "fa_per_video_minute": 0.33,
+   "fa_by_object": {
+    "fish": 1
+   }
+  },
+  "appearance vote (>= 50% frames dead)": {
+   "recall": 1.0,
+   "dead_tracks": 23,
+   "false_alarm_tracks": 0,
+   "fa_per_video_minute": 0.0,
+   "fa_by_object": {}
+  },
+  "appearance + still (displacement)": {
+   "recall": 1.0,
+   "dead_tracks": 23,
+   "false_alarm_tracks": 0,
+   "fa_per_video_minute": 0.0,
+   "fa_by_object": {}
+  },
+  "appearance + still + no self-motion": {
+   "recall": 0.957,
+   "dead_tracks": 23,
+   "false_alarm_tracks": 0,
+   "fa_per_video_minute": 0.0,
+   "fa_by_object": {}
+  }
+ }
+}

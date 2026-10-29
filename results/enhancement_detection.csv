@@ -1,0 +1,8 @@
+train_images,test_images,AP,AP50
+raw,raw,0.294,0.498
+raw,clahe,0.215,0.391
+raw,nafnet,0.248,0.415
+clahe,raw,0.246,0.421
+clahe,clahe,0.291,0.514
+nafnet,raw,0.225,0.382
+nafnet,nafnet,0.301,0.486

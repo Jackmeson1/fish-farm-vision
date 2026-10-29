@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" role="img" aria-label="Line chart: RF-DETR-M scores 0.27, 0.38 and 0.38 with 103, 1,038 and 10,387 labelled frames; YOLO26-L scores 0.22, 0.31 and 0.30.">
+<title>Line chart: RF-DETR-M scores 0.27, 0.38 and 0.38 with 103, 1,038 and 10,387 labelled frames; YOLO26-L scores 0.22, 0.31 and 0.30.</title>
+<text x="0.0" y="20.0" font-size="16" fill="#f0efec" text-anchor="start" font-weight="600">A tenth of the labels did as well as all of them</text>
+<text x="0.0" y="41.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">Detection score (AP) on the 15 held-out videos vs. number of hand-labelled training frames</text>
+<rect x="0.0" y="69.0" width="10.0" height="10.0" rx="2" fill="#3987e5"/>
+<text x="16.0" y="78.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">RF-DETR-M</text>
+<rect x="102.8" y="69.0" width="10.0" height="10.0" rx="2" fill="#d95926"/>
+<text x="118.8" y="78.0" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">YOLO26-L</text>
+<line x1="56.0" y1="280.0" x2="610.0" y2="280.0" stroke="#2c2c2a" stroke-width="1"/>
+<text x="48.0" y="284.0" font-size="12" fill="#9a9890" text-anchor="end" font-weight="400">0.15</text>
+<line x1="56.0" y1="244.0" x2="610.0" y2="244.0" stroke="#2c2c2a" stroke-width="1"/>
+<text x="48.0" y="248.0" font-size="12" fill="#9a9890" text-anchor="end" font-weight="400">0.20</text>
+<line x1="56.0" y1="208.0" x2="610.0" y2="208.0" stroke="#2c2c2a" stroke-width="1"/>
+<text x="48.0" y="212.0" font-size="12" fill="#9a9890" text-anchor="end" font-weight="400">0.25</text>
+<line x1="56.0" y1="172.0" x2="610.0" y2="172.0" stroke="#2c2c2a" stroke-width="1"/>
+<text x="48.0" y="176.0" font-size="12" fill="#9a9890" text-anchor="end" font-weight="400">0.30</text>
+<line x1="56.0" y1="136.0" x2="610.0" y2="136.0" stroke="#2c2c2a" stroke-width="1"/>
+<text x="48.0" y="140.0" font-size="12" fill="#9a9890" text-anchor="end" font-weight="400">0.35</text>
+<line x1="56.0" y1="100.0" x2="610.0" y2="100.0" stroke="#2c2c2a" stroke-width="1"/>
+<text x="48.0" y="104.0" font-size="12" fill="#9a9890" text-anchor="end" font-weight="400">0.40</text>
+<text x="56.0" y="300.0" font-size="12" fill="#9a9890" text-anchor="middle" font-weight="400">103 (1%)</text>
+<text x="333.4" y="300.0" font-size="12" fill="#9a9890" text-anchor="middle" font-weight="400">1,038 (10%)</text>
+<text x="610.0" y="300.0" font-size="12" fill="#9a9890" text-anchor="middle" font-weight="400">10,387 (all)</text>
+<polyline points="56.0,193.6 333.4,116.6 610.0,114.4" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="56.0" cy="193.6" r="5" fill="#3987e5" stroke="#0d1117" stroke-width="2"/>
+<circle cx="333.4" cy="116.6" r="5" fill="#3987e5" stroke="#0d1117" stroke-width="2"/>
+<circle cx="610.0" cy="114.4" r="5" fill="#3987e5" stroke="#0d1117" stroke-width="2"/>
+<text x="622.0" y="118.4" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">RF-DETR-M 0.38</text>
+<polyline points="56.0,230.3 333.4,167.0 610.0,171.3" fill="none" stroke="#d95926" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="56.0" cy="230.3" r="5" fill="#d95926" stroke="#0d1117" stroke-width="2"/>
+<circle cx="333.4" cy="167.0" r="5" fill="#d95926" stroke="#0d1117" stroke-width="2"/>
+<circle cx="610.0" cy="171.3" r="5" fill="#d95926" stroke="#0d1117" stroke-width="2"/>
+<text x="622.0" y="175.3" font-size="13" fill="#c3c2b7" text-anchor="start" font-weight="400">YOLO26-L 0.30</text>
+</svg>

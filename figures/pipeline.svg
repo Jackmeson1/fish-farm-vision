@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="262" viewBox="0 0 760 262" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" role="img" aria-label="Diagram: camera photo, then a small detector that boxes every fish (catches 93% of dead fish), then three large models vote on each box (98% precision, 93% recall), then an alarm. Estimated end to end: 87% of dead fish found, 98% of alarms real.">
+<title>Diagram: camera photo, then a small detector that boxes every fish (catches 93% of dead fish), then three large models vote on each box (98% precision, 93% recall), then an alarm. Estimated end to end: 87% of dead fish found, 98% of alarms real.</title>
+<text x="0.0" y="20.0" font-size="16" fill="#0b0b0b" text-anchor="start" font-weight="600">A dead-fish alarm built from what worked</text>
+<text x="0.0" y="41.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">Each stage was measured on the same later-session photos; the chain as a whole was not run.</text>
+<rect x="0.0" y="66.0" width="178.0" height="96.0" rx="8" fill="#f6f6f4" stroke="#d6d5cf" stroke-width="1"/>
+<text x="14.0" y="92.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">Camera photo</text>
+<text x="14.0" y="116.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">one every 15 minutes</text>
+<text x="14.0" y="134.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">over the tank drain</text>
+<rect x="218.0" y="66.0" width="178.0" height="96.0" rx="8" fill="#f6f6f4" stroke="#d6d5cf" stroke-width="1"/>
+<text x="232.0" y="92.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">Small detector</text>
+<text x="232.0" y="116.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">boxes every fish,</text>
+<text x="232.0" y="134.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">dead or alive</text>
+<rect x="218.0" y="172.0" width="3.0" height="34.0" rx="0" fill="#2a78d6"/>
+<text x="230.0" y="186.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="400">catches 93% of dead fish,</text>
+<text x="230.0" y="203.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="400">~6 boxes per photo</text>
+<rect x="436.0" y="66.0" width="178.0" height="96.0" rx="8" fill="#f6f6f4" stroke="#d6d5cf" stroke-width="1"/>
+<text x="450.0" y="92.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">Large model + checklist</text>
+<text x="450.0" y="116.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">judges each box;</text>
+<text x="450.0" y="134.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">three models vote</text>
+<rect x="436.0" y="172.0" width="3.0" height="34.0" rx="0" fill="#2a78d6"/>
+<text x="448.0" y="186.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="400">98% of its "dead" calls</text>
+<text x="448.0" y="203.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="400">are right; finds 93%</text>
+<line x1="184.0" y1="114.0" x2="210.0" y2="114.0" stroke="#c3c2b7" stroke-width="2"/>
+<path d="M210,109.0 L218,114.0 L210,119.0 Z" fill="#c3c2b7"/>
+<line x1="402.0" y1="114.0" x2="428.0" y2="114.0" stroke="#c3c2b7" stroke-width="2"/>
+<path d="M428,109.0 L436,114.0 L428,119.0 Z" fill="#c3c2b7"/>
+<text x="628.0" y="96.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">Alarm</text>
+<text x="628.0" y="116.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="400">staff or a</text>
+<text x="628.0" y="132.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="400">robot removes</text>
+<text x="628.0" y="148.0" font-size="12" fill="#52514e" text-anchor="start" font-weight="400">the fish</text>
+<line x1="614.0" y1="114.0" x2="624.0" y2="114.0" stroke="#c3c2b7" stroke-width="2"/>
+<text x="0.0" y="250.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="400">Multiplied together: about 87% of dead fish found, about 98% of alarms real. An estimate, not a test.</text>
+</svg>

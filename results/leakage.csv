@@ -1,0 +1,9 @@
+dataset,run,train,test,AP,AP50
+Brackish,clean,"YOLO26-S, 8829 frames from training videos only",half the frames of the 15 test videos (1371),0.314,0.524
+Brackish,leaky,"YOLO26-S, 8829 frames incl. 1017 from the other half of the test videos",same 1371 frames,0.721,0.976
+Brackish,seen_videos,"YOLO26-S, 8829 frames from training videos",1558 held-out frames of the same training videos,0.749,0.973
+Brackish,unseen_videos,same model as seen_videos,15 unseen test videos (2743 frames),0.31,0.519
+RAS-MortDB,published_weights,authors' released YOLO weights,authors' random test split (200 images),0.685,0.947
+RAS-MortDB,random_split,YOLO26-S retrained on the authors' random split,authors' random test split (200 images),0.681,0.949
+RAS-MortDB,random_split_on_later,YOLO26-S on the authors' random split (contains frames of the later sessions),last 4 capture sessions (300 images),0.723,0.959
+RAS-MortDB,earlier_only,YOLO26-S on the first 15 capture sessions only,last 4 capture sessions (300 images),0.534,0.827

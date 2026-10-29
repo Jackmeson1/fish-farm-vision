@@ -1,0 +1,6 @@
+method,dead_AP50,dead_precision_at_0_5,dead_recall_at_0_5
+"YOLO26-S, trained on the first 15 sessions",0.901,0.94,0.794
+"same, but a dead fish must be in the same place in the neighbouring photo",0.497,0.967,0.407
+"Grounding DINO, zero-shot, prompt ""dead fish""",0.454,0.803,0.057
+"Grounding DINO finds fish, CLIP labels dead/alive",0.24,0.0,0.0
+YOLO26-S trained on synthetic dead fish (museum photos),0.0,0.0,0.0

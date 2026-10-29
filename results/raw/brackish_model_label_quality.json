@@ -1,0 +1,143 @@
+{
+ "naive": {
+  "crab": {
+   "pseudo": 2078,
+   "gt": 9111,
+   "precision": 0.749,
+   "recall": 0.171
+  },
+  "fish": {
+   "pseudo": 962,
+   "gt": 2006,
+   "precision": 0.945,
+   "recall": 0.453
+  },
+  "jellyfish": {
+   "pseudo": 540,
+   "gt": 520,
+   "precision": 0.404,
+   "recall": 0.419
+  },
+  "shrimp": {
+   "pseudo": 10,
+   "gt": 409,
+   "precision": 0.0,
+   "recall": 0.0
+  },
+  "small_fish": {
+   "pseudo": 13272,
+   "gt": 7076,
+   "precision": 0.417,
+   "recall": 0.781
+  },
+  "starfish": {
+   "pseudo": 5396,
+   "gt": 5983,
+   "precision": 0.905,
+   "recall": 0.816
+  },
+  "all": {
+   "pseudo": 22258,
+   "gt": 25105,
+   "precision": 0.588,
+   "recall": 0.522
+  }
+ },
+ "track": {
+  "crab": {
+   "pseudo": 2278,
+   "gt": 9111,
+   "precision": 0.705,
+   "recall": 0.176
+  },
+  "fish": {
+   "pseudo": 1166,
+   "gt": 2006,
+   "precision": 0.933,
+   "recall": 0.542
+  },
+  "jellyfish": {
+   "pseudo": 534,
+   "gt": 520,
+   "precision": 0.414,
+   "recall": 0.425
+  },
+  "shrimp": {
+   "pseudo": 0,
+   "gt": 409,
+   "precision": 0.0,
+   "recall": 0.0
+  },
+  "small_fish": {
+   "pseudo": 11516,
+   "gt": 7076,
+   "precision": 0.474,
+   "recall": 0.771
+  },
+  "starfish": {
+   "pseudo": 5714,
+   "gt": 5983,
+   "precision": 0.903,
+   "recall": 0.862
+  },
+  "all": {
+   "pseudo": 21208,
+   "gt": 25105,
+   "precision": 0.638,
+   "recall": 0.539
+  }
+ },
+ "fill": {
+  "crab": {
+   "pseudo": 7134,
+   "gt": 9111,
+   "precision": 0.312,
+   "recall": 0.244
+  },
+  "fish": {
+   "pseudo": 1316,
+   "gt": 2006,
+   "precision": 0.881,
+   "recall": 0.578
+  },
+  "jellyfish": {
+   "pseudo": 711,
+   "gt": 520,
+   "precision": 0.314,
+   "recall": 0.429
+  },
+  "shrimp": {
+   "pseudo": 0,
+   "gt": 409,
+   "precision": 0.0,
+   "recall": 0.0
+  },
+  "small_fish": {
+   "pseudo": 21323,
+   "gt": 7076,
+   "precision": 0.285,
+   "recall": 0.857
+  },
+  "starfish": {
+   "pseudo": 7515,
+   "gt": 5983,
+   "precision": 0.729,
+   "recall": 0.916
+  },
+  "all": {
+   "pseudo": 37999,
+   "gt": 25105,
+   "precision": 0.399,
+   "recall": 0.604
+  }
+ },
+ "settings": {
+  "HIGH": 0.35,
+  "LOW": 0.15,
+  "MIN_LEN": 3,
+  "MAX_GAP": 3,
+  "LINK_IOU": 0.3,
+  "DEDUP_IOU": 0.6,
+  "teacher": "/root/fish/runs/teacher_gdino/train_dets.json"
+ }
+}

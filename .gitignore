@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+video/node_modules/
+video/public/frames/
+video/out/

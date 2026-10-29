@@ -1,0 +1,53 @@
+{
+ "dataset": "RAS-MortDB (Roboflow export), duplicates from Roboflow augmentation removed so each capture appears once",
+ "rule": "split by capture session in time order: train on the earlier sessions, test on the last four",
+ "unique_captures": 2000,
+ "sessions": 20,
+ "per_split": {
+  "train": 1585,
+  "valid": 115,
+  "test": 300
+ },
+ "sessions_per_split": {
+  "train": [
+   "0023",
+   "0026",
+   "0027",
+   "0028",
+   "0029",
+   "0030",
+   "0031",
+   "0032",
+   "0057",
+   "0065",
+   "0069",
+   "0070",
+   "0071",
+   "0075",
+   "0076"
+  ],
+  "valid": [
+   "0078"
+  ],
+  "test": [
+   "0079",
+   "0081",
+   "0084",
+   "0086"
+  ]
+ },
+ "dates_per_split": {
+  "train": [
+   "20221006",
+   "20221128"
+  ],
+  "valid": [
+   "20221130",
+   "20221202"
+  ],
+  "test": [
+   "20221203",
+   "20221222"
+  ]
+ }
+}

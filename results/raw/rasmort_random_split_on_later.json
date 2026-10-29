@@ -1,0 +1,36 @@
+{
+ "AP": 0.7229,
+ "AP50": 0.9587,
+ "AP75": 0.8516,
+ "APs": -1.0,
+ "APm": 0.548,
+ "APl": 0.7423,
+ "AR100": 0.7868,
+ "per_class": {
+  "fish-alive": {
+   "AP": 0.6998453821743452,
+   "AP50": 0.948168821177252,
+   "n_gt": 290
+  },
+  "fish-dead": {
+   "AP": 0.7459480783724638,
+   "AP50": 0.9692801412076466,
+   "n_gt": 933
+  }
+ },
+ "name": "ras_y26s_pub_on_blocked",
+ "coco": "data/rasmort/blocked_coco/test",
+ "images": 300,
+ "dead_at_0_5": {
+  "precision": 0.947,
+  "recall": 0.917,
+  "n_pred": 904,
+  "n_gt": 933
+ },
+ "dead_at_0_25": {
+  "precision": 0.854,
+  "recall": 0.957,
+  "n_pred": 1046,
+  "n_gt": 933
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "AP": 0.1208,
+ "AP50": 0.185,
+ "AP75": 0.1268,
+ "APs": -1.0,
+ "APm": 0.0554,
+ "APl": 0.1825,
+ "AR100": 0.6977,
+ "per_class": {
+  "fish-alive": {
+   "AP": 0.09877610618305925,
+   "AP50": 0.12960396619577205,
+   "n_gt": 290
+  },
+  "fish-dead": {
+   "AP": 0.1427350118739364,
+   "AP50": 0.24044002390081384,
+   "n_gt": 933
+  }
+ },
+ "name": "ras_zs_twostage",
+ "coco": "data/rasmort/blocked_coco/test",
+ "images": 300,
+ "dead_at_0_5": {
+  "precision": 0.0,
+  "recall": 0.0,
+  "n_pred": 0,
+  "n_gt": 933
+ },
+ "dead_at_0_25": {
+  "precision": 0.857,
+  "recall": 0.006,
+  "n_pred": 7,
+  "n_gt": 933
+ }
+}

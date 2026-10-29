@@ -1,0 +1,13 @@
+{
+ "dataset": "Brackish, Roboflow export",
+ "videos": 89,
+ "frames": 14674,
+ "videos_per_original_split": {
+  "train": 89,
+  "valid": 89,
+  "test": 89
+ },
+ "test_videos_also_in_train": 89,
+ "test_frames_whose_video_is_in_train": 1468,
+ "test_frames": 1468
+}

@@ -1,0 +1,51 @@
+{
+ "AP": 0.2512,
+ "AP50": 0.4107,
+ "AP75": 0.2868,
+ "APs": 0.0,
+ "APm": 0.1045,
+ "APl": 0.3902,
+ "AR100": 0.3466,
+ "per_class": {
+  "crab": {
+   "AP": 0.0698345004045494,
+   "AP50": 0.12618372470411815,
+   "n_gt": 2711
+  },
+  "fish": {
+   "AP": 0.363324071473456,
+   "AP50": 0.5691812377707209,
+   "n_gt": 841
+  },
+  "jellyfish": {
+   "AP": 0.37749312981661415,
+   "AP50": 0.5975784002582747,
+   "n_gt": 74
+  },
+  "shrimp": {
+   "AP": 0.0,
+   "AP50": 0.0,
+   "n_gt": 109
+  },
+  "small_fish": {
+   "AP": 0.17916970067468746,
+   "AP50": 0.3230632338008527,
+   "n_gt": 3162
+  },
+  "starfish": {
+   "AP": 0.5175929965646849,
+   "AP50": 0.8482904181270765,
+   "n_gt": 1162
+  }
+ },
+ "name": "y26s_pl_fill",
+ "model": "yolo26s.pt",
+ "imgsz": 640,
+ "epochs": 30,
+ "train_seconds": 612.570951461792,
+ "params_M": 9.95,
+ "test_images": 2743,
+ "predict_seconds": 15.3,
+ "weights": "/root/fish/runs/y26s_pl_fill/weights/last.pt",
+ "data": "data/brk_pl_fill/yolo/data.yaml"
+}

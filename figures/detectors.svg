@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="392" viewBox="0 0 760 392" font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" role="img" aria-label="Bar chart of detection scores on unseen videos. RF-DETR-M 0.380, Grounding DINO without training 0.375, YOLOX-L 0.33, YOLO26-L 0.30, YOLO26-S taught by Grounding DINO 0.30, YOLO26-S 0.29, SAM 3 0.19, OWLv2 0.06, YOLOE 0.01.">
+<title>Bar chart of detection scores on unseen videos. RF-DETR-M 0.380, Grounding DINO without training 0.375, YOLOX-L 0.33, YOLO26-L 0.30, YOLO26-S taught by Grounding DINO 0.30, YOLO26-S 0.29, SAM 3 0.19, OWLv2 0.06, YOLOE 0.01.</title>
+<text x="0.0" y="20.0" font-size="16" fill="#0b0b0b" text-anchor="start" font-weight="600">RF-DETR scored best on videos it had never seen</text>
+<text x="0.0" y="41.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">Detection score (AP, 0 to 1) on 15 held-out Brackish videos, 2,743 frames, 6 kinds of animal</text>
+<rect x="0.0" y="65.0" width="10.0" height="10.0" rx="2" fill="#2a78d6"/>
+<text x="16.0" y="74.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">trained on 10,387 hand-labelled frames</text>
+<rect x="311.6" y="65.0" width="10.0" height="10.0" rx="2" fill="#eb6834"/>
+<text x="327.6" y="74.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">no hand-drawn boxes used</text>
+<line x1="318.0" y1="84.0" x2="318.0" y2="358.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="318.0" y="376.0" font-size="12" fill="#6f6d68" text-anchor="middle" font-weight="400">0</text>
+<line x1="403.3" y1="84.0" x2="403.3" y2="358.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="403.3" y="376.0" font-size="12" fill="#6f6d68" text-anchor="middle" font-weight="400">0.1</text>
+<line x1="488.7" y1="84.0" x2="488.7" y2="358.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="488.7" y="376.0" font-size="12" fill="#6f6d68" text-anchor="middle" font-weight="400">0.2</text>
+<line x1="574.0" y1="84.0" x2="574.0" y2="358.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="574.0" y="376.0" font-size="12" fill="#6f6d68" text-anchor="middle" font-weight="400">0.3</text>
+<line x1="659.3" y1="84.0" x2="659.3" y2="358.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="659.3" y="376.0" font-size="12" fill="#6f6d68" text-anchor="middle" font-weight="400">0.4</text>
+<text x="308.0" y="107.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">RF-DETR-M</text>
+<path d="M318.0,94.0 H638.3 Q642.3,94.0 642.3,98.0 V108.0 Q642.3,112.0 638.3,112.0 H318.0 Z" fill="#2a78d6"/>
+<text x="648.3" y="107.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.380</text>
+<text x="308.0" y="137.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">Grounding DINO-B, no training</text>
+<path d="M318.0,124.0 H634.0 Q638.0,124.0 638.0,128.0 V138.0 Q638.0,142.0 634.0,142.0 H318.0 Z" fill="#eb6834"/>
+<text x="644.0" y="137.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.375</text>
+<text x="308.0" y="167.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">YOLOX-L (2021)</text>
+<path d="M318.0,154.0 H596.5 Q600.5,154.0 600.5,158.0 V168.0 Q600.5,172.0 596.5,172.0 H318.0 Z" fill="#2a78d6"/>
+<text x="606.5" y="167.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.331</text>
+<text x="308.0" y="197.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">YOLO26-L</text>
+<path d="M318.0,184.0 H570.9 Q574.9,184.0 574.9,188.0 V198.0 Q574.9,202.0 570.9,202.0 H318.0 Z" fill="#2a78d6"/>
+<text x="580.9" y="197.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.301</text>
+<text x="308.0" y="227.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">YOLO26-S taught by Grounding DINO</text>
+<path d="M318.0,214.0 H566.6 Q570.6,214.0 570.6,218.0 V228.0 Q570.6,232.0 566.6,232.0 H318.0 Z" fill="#eb6834"/>
+<text x="576.6" y="227.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.296</text>
+<text x="308.0" y="257.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">YOLO26-S</text>
+<path d="M318.0,244.0 H564.9 Q568.9,244.0 568.9,248.0 V258.0 Q568.9,262.0 564.9,262.0 H318.0 Z" fill="#2a78d6"/>
+<text x="574.9" y="257.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.294</text>
+<text x="308.0" y="287.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">SAM 3, no training</text>
+<path d="M318.0,274.0 H472.7 Q476.7,274.0 476.7,278.0 V288.0 Q476.7,292.0 472.7,292.0 H318.0 Z" fill="#eb6834"/>
+<text x="482.7" y="287.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.186</text>
+<text x="308.0" y="317.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">OWLv2-L, no training</text>
+<path d="M318.0,304.0 H361.8 Q365.8,304.0 365.8,308.0 V318.0 Q365.8,322.0 361.8,322.0 H318.0 Z" fill="#eb6834"/>
+<text x="371.8" y="317.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.056</text>
+<text x="308.0" y="347.0" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="400">YOLOE-26L, no training</text>
+<path d="M318.0,334.0 H323.4 Q327.4,334.0 327.4,338.0 V348.0 Q327.4,352.0 323.4,352.0 H318.0 Z" fill="#eb6834"/>
+<text x="333.4" y="347.0" font-size="13" fill="#52514e" text-anchor="start" font-weight="400">0.011</text>
+<line x1="318.0" y1="84.0" x2="318.0" y2="358.0" stroke="#c3c2b7" stroke-width="1"/>
+</svg>

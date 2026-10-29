@@ -1,0 +1,11 @@
+{
+ "PSNR": 22.042,
+ "SSIM": 0.8937,
+ "n": 90,
+ "iters": 20000,
+ "batch": 16,
+ "crop": 256,
+ "train_seconds": 5437,
+ "params_M": 29.16,
+ "sec_per_img": 0.1617
+}

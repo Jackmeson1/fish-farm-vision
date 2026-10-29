@@ -1,0 +1,12 @@
+{
+ "name": "dead_synth_y26s",
+ "frames": 2743,
+ "fa_per_1000_frames@0.25": 11.3,
+ "frames_with_fa@0.25": 0.011,
+ "fa_per_1000_frames@0.35": 10.9,
+ "frames_with_fa@0.35": 0.011,
+ "fa_per_1000_frames@0.5": 7.7,
+ "frames_with_fa@0.5": 0.008,
+ "fa_per_1000_frames@0.7": 5.8,
+ "frames_with_fa@0.7": 0.006
+}

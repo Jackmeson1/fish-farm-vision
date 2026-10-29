@@ -1,0 +1,36 @@
+{
+ "AP": 0.6812,
+ "AP50": 0.9486,
+ "AP75": 0.7861,
+ "APs": -1.0,
+ "APm": 0.473,
+ "APl": 0.7017,
+ "AR100": 0.761,
+ "per_class": {
+  "fish-alive": {
+   "AP": 0.6674136775141528,
+   "AP50": 0.9499518883767466,
+   "n_gt": 310
+  },
+  "fish-dead": {
+   "AP": 0.6948988115192313,
+   "AP50": 0.9472421811084898,
+   "n_gt": 311
+  }
+ },
+ "name": "ras_y26s_pub_on_pubtest",
+ "coco": "data/rasmort/coco/test",
+ "images": 200,
+ "dead_at_0_5": {
+  "precision": 0.943,
+  "recall": 0.897,
+  "n_pred": 296,
+  "n_gt": 311
+ },
+ "dead_at_0_25": {
+  "precision": 0.831,
+  "recall": 0.936,
+  "n_pred": 350,
+  "n_gt": 311
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "name": "dead_gdino",
+ "frames": 2743,
+ "fa_per_1000_frames@0.25": 2847.2,
+ "frames_with_fa@0.25": 0.951,
+ "fa_per_1000_frames@0.35": 1696.3,
+ "frames_with_fa@0.35": 0.775,
+ "fa_per_1000_frames@0.5": 587.3,
+ "frames_with_fa@0.5": 0.476,
+ "fa_per_1000_frames@0.7": 159.0,
+ "frames_with_fa@0.7": 0.159
+}

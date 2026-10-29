@@ -1,0 +1,171 @@
+{
+ "settings": {
+  "max_gap_min": 120,
+  "link_iou": 0.3,
+  "low": 0.25
+ },
+ "test_images": 300,
+ "images_with_neighbour": 299,
+ "gt_persistence": {
+  "dead": {
+   "boxes_with_neighbour_capture": 932,
+   "same_place_in_neighbour": 0.139
+  },
+  "live": {
+   "boxes_with_neighbour_capture": 288,
+   "same_place_in_neighbour": 0.059
+  }
+ },
+ "detectors": {
+  "ras_y26s_blocked_on_blocked": {
+   "as_is": {
+    "dead_AP": 0.5983540570743617,
+    "dead_AP50": 0.901011565926499,
+    "at_0_5": {
+     "precision": 0.94,
+     "recall": 0.794,
+     "n_pred": 788,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.828,
+     "recall": 0.864,
+     "n_pred": 974,
+     "n_gt": 933
+    }
+   },
+   "soft_gate": {
+    "dead_AP": 0.5515372336150582,
+    "dead_AP50": 0.8572802051584087,
+    "at_0_5": {
+     "precision": 0.967,
+     "recall": 0.407,
+     "n_pred": 393,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.892,
+     "recall": 0.442,
+     "n_pred": 462,
+     "n_gt": 933
+    }
+   },
+   "hard_gate": {
+    "dead_AP": 0.31719499343701474,
+    "dead_AP50": 0.49708828005057837,
+    "at_0_5": {
+     "precision": 0.967,
+     "recall": 0.407,
+     "n_pred": 393,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.892,
+     "recall": 0.442,
+     "n_pred": 462,
+     "n_gt": 933
+    }
+   }
+  },
+  "ras_zs_gdino": {
+   "as_is": {
+    "dead_AP": 0.30626462941456817,
+    "dead_AP50": 0.4543414639472592,
+    "at_0_5": {
+     "precision": 0.803,
+     "recall": 0.057,
+     "n_pred": 66,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.405,
+     "recall": 0.609,
+     "n_pred": 1401,
+     "n_gt": 933
+    }
+   },
+   "soft_gate": {
+    "dead_AP": 0.20220962718641955,
+    "dead_AP50": 0.30681362500668696,
+    "at_0_5": {
+     "precision": 0.829,
+     "recall": 0.036,
+     "n_pred": 41,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.427,
+     "recall": 0.285,
+     "n_pred": 623,
+     "n_gt": 933
+    }
+   },
+   "hard_gate": {
+    "dead_AP": 0.17098304761226402,
+    "dead_AP50": 0.2665767376876357,
+    "at_0_5": {
+     "precision": 0.829,
+     "recall": 0.036,
+     "n_pred": 41,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.427,
+     "recall": 0.285,
+     "n_pred": 623,
+     "n_gt": 933
+    }
+   }
+  },
+  "ras_zs_twostage": {
+   "as_is": {
+    "dead_AP": 0.1427350118739364,
+    "dead_AP50": 0.24044002390081384,
+    "at_0_5": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "n_pred": 0,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.857,
+     "recall": 0.006,
+     "n_pred": 7,
+     "n_gt": 933
+    }
+   },
+   "soft_gate": {
+    "dead_AP": 0.1407306715314165,
+    "dead_AP50": 0.2398202573404927,
+    "at_0_5": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "n_pred": 0,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "n_pred": 0,
+     "n_gt": 933
+    }
+   },
+   "hard_gate": {
+    "dead_AP": 0.007128712871287126,
+    "dead_AP50": 0.0099009900990099,
+    "at_0_5": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "n_pred": 0,
+     "n_gt": 933
+    },
+    "at_0_25": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "n_pred": 0,
+     "n_gt": 933
+    }
+   }
+  }
+ }
+}

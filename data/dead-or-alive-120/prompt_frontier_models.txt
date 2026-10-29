@@ -1,0 +1,15 @@
+You are judging fish mortality in a recirculating aquaculture tank. The 20 attached images are grids; each grid
+row is one sample labelled on the left (S000 ... S119). Each row is a panel described as follows.
+
+The image has three tiles from an underwater camera that looks down at the bottom drain plate of a recirculating aquaculture tank with trout. Left: the whole frame, one fish outlined by a red box. Middle: a close-up of that fish. Right: the same region in the neighbouring photo taken 15-120 minutes earlier or later (grey if there is none).
+Mortality checklist used by farm technicians:
+- Dead: lying on the tank bottom or drain plate; on its side or belly-up, so the pale or white belly and flank face
+  the camera; faded, washed-out colour; body rigid (straight or stiffly bent), fins folded; sharp outline with no
+  motion blur; usually still at the same place and pose in the neighbouring photo.
+- Live: upright, so from above you see the dark back and the spotted dorsal side; swimming in mid-water above the
+  plate; body flexed in a swimming curve; often motion-blurred; at a different place in the neighbouring photo.
+- Weigh all cues; one cue alone (for example a pale colour under bright light) is not enough.
+
+For every sample S000 to S119, decide whether the boxed fish is dead or live. Do not use any tools, files or web
+search: judge only from the attached images. Reply with exactly 120 lines, one per sample in order, in the form
+`S000 dead` or `S000 live`, and nothing else.
