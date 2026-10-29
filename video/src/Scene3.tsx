@@ -1,6 +1,6 @@
 import React from "react";
 import {useCurrentFrame} from "remotion";
-import {C, Legend, Reveal, Scene, Txt, fade, prog} from "./common";
+import {C, Eyebrow, Legend, Reveal, Scene, Txt, fade, prog} from "./common";
 
 const N = 24;
 const hash = (i: number, j: number) => {
@@ -20,6 +20,7 @@ export const Scene3: React.FC<{duration: number}> = ({duration}) => {
   const numB = fade(frame, 6.8, 1.0);
   return (
     <Scene duration={duration}>
+      <Eyebrow frame={frame}>Why you can trust these numbers</Eyebrow>
       <div style={{position: "absolute", left: 60, top: 70, width: 900, height: 60}}>
         <div style={{position: "absolute", opacity: labelA}}><Txt font="serif" size={40}>Random frames</Txt></div>
         <div style={{position: "absolute", opacity: labelB}}><Txt font="serif" size={40}>Whole videos</Txt></div>

@@ -1,6 +1,6 @@
 import React from "react";
 import {useCurrentFrame} from "remotion";
-import {Bars, C, Legend, Reveal, Row, Scene, Txt} from "./common";
+import {Bars, Eyebrow, C, Legend, Reveal, Row, Scene, Txt} from "./common";
 
 const rows: Row[] = [
   {label: "RF-DETR-M", value: 0.38, color: C.blue, text: "0.380"},
@@ -15,6 +15,7 @@ export const Scene4: React.FC<{duration: number}> = ({duration}) => {
   const frame = useCurrentFrame();
   return (
     <Scene duration={duration}>
+      <Eyebrow frame={frame}>What small models do well: find and box</Eyebrow>
       <Reveal frame={frame} at={0.2} style={{position: "absolute", left: 60, top: 60}}>
         <Txt font="serif" size={40}>Detectors</Txt>
         <Txt size={22} color={C.sub} style={{marginTop: 6}}>Score on 15 videos no model had seen</Txt>

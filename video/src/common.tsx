@@ -130,3 +130,10 @@ export const Bars: React.FC<{
     })}
   </div>
 );
+
+/** Small heading at the top-left of a scene. */
+export const Eyebrow: React.FC<{frame: number; children: React.ReactNode}> = ({frame, children}) => (
+  <Reveal frame={frame} at={0.1} style={{position: "absolute", left: 60, top: 22}}>
+    <Txt size={17} weight={500} color={C.blue} style={{letterSpacing: 2.2, textTransform: "uppercase", whiteSpace: "nowrap"}}>{children}</Txt>
+  </Reveal>
+);

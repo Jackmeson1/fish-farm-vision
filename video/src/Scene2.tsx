@@ -1,6 +1,6 @@
 import React from "react";
 import {useCurrentFrame} from "remotion";
-import {C, Footage, Reveal, Scene, Txt, Vignette, fade} from "./common";
+import {C, Eyebrow, Footage, Reveal, Scene, Txt, Vignette, fade} from "./common";
 
 const tiles = [
   {set: "raw", label: "As filmed"},
@@ -19,6 +19,7 @@ export const Scene2: React.FC<{duration: number}> = ({duration}) => {
   const TW = 360, TH = 203;
   return (
     <Scene duration={duration}>
+      <Eyebrow frame={frame}>Hand-made tricks that did not help</Eyebrow>
       <div style={{position: "absolute", left: 60, top: 70, width: TW * 2 + 16}}>
         <div style={{display: "grid", gridTemplateColumns: `${TW}px ${TW}px`, gap: 16}}>
           {tiles.map((t, i) => (
