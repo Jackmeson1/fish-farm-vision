@@ -4,26 +4,45 @@
   <img src="media/preview.gif" width="720" alt="Split screen of an underwater clip: left as filmed, green and murky; right after colour correction, where a school of small fish stands out.">
 </p>
 <p align="center"><sub>Left: a Brackish clip as filmed. Right: the same clip after gray-world + CLAHE colour correction.
-<a href="media/fish-farm-vision.mp4">Watch the 80-second video.</a></sub></p>
+<a href="media/fish-farm-vision.mp4">Watch the short video.</a></sub></p>
 
-I spent a day testing what public datasets and current vision models can do for cameras on fish farms. Claude Code
-wrote and ran the experiments on rented cloud GPUs. I picked the questions and checked the results. Each setting was
-run once, on two public datasets, so read the numbers as a first look rather than a benchmark.
+The most expensive question a camera on a fish farm can answer is which fish died. On photos from a real trout farm,
+large commercial AI models given a one-page checklist told dead fish from live ones correctly 82 to 96% of the time.
+Open models small enough for one GPU were at 50%, a coin flip.
+
+Every hand-built trick I tried did not help: colour correction, synthetic dead fish, a rule that dead fish stay put.
+What worked was learning from real data and handing the hard judgement to the largest models. That is Rich Sutton's
+[Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html), in small.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="figures/pipeline-dark.svg">
+    <img src="figures/pipeline.svg" alt="Diagram: camera photo, then a small detector that boxes every fish (catches 93% of dead fish), then three large models vote on each box (98% precision, 93% recall), then an alarm. Estimated end to end: 87% of dead fish found, 98% of alarms real.">
+  </picture>
+</p>
+
+The design that follows is a workflow: a small detector on site finds every fish, and large models judge each one.
+Put together, the two measured stages suggest about 87% of dead fish found with about 98% of alarms real. That is an
+estimate, on one farm, and the full chain has not been run yet. [Section 4](#4-large-models-plus-a-workflow) takes it
+apart.
+
+This was a one-day project on public datasets and rented cloud GPUs. Claude Code wrote and ran the experiments; I
+picked the questions and checked the results. Each setting was run once, so read the numbers as a first look rather
+than a benchmark.
 
 ## What I found
 
+- Telling dead fish from live ones worked only with large commercial models: 82 to 96% correct on 120 fish from one
+  farm, 96% for a vote of three. Open models up to 32B parameters did no better than a coin flip.
 - **The usual way to split these datasets can make a model look more than twice as good as it is.** On Brackish, with
   the same model and the same test frames, the score was 0.72 when training and test frames were drawn at random from
-  the same videos, and 0.31 when whole videos were kept apart.
-- A trout-farm dataset shows the same effect over time. YOLO26-S scored 0.95 on the published random split
-  and 0.83 when tested on photos taken after the training photos (AP50, with somewhat less training data).
-- On videos no model had seen, RF-DETR-M scored best (0.380). Grounding DINO, which never trained on this data, came
-  close (0.375). In the YOLO family, the 2021 YOLOX-L (0.331) beat the 2026 YOLO26-L (0.301).
-- A tenth of the labels did about as well as all of them: 0.377 against 0.380.
-- Colour correction made the footage easier to look at. It did not help the detector.
-- Telling a dead fish from a live one worked only with large commercial models: 82 to 96% correct on 120 fish from
-  one farm. Open models up to 32B parameters did no better than a coin flip. Synthetic training data, detectors used
-  without training on this data, and a "dead fish stay put" rule all failed.
+  the same videos, and 0.31 when whole videos were kept apart. On a trout-farm dataset, YOLO26-S scored 0.95 on the
+  published random split and 0.83 on photos taken after the training photos (AP50, with somewhat less training data).
+- Hand-built tricks did not help. Colour correction made footage nicer to look at but did not help the detector.
+  Synthetic dead fish, a "dead fish stay put" rule and asking a detector for "dead fish" by name all failed.
+- Small models are good at finding and boxing. On videos no model had seen, RF-DETR-M scored best (0.380), and
+  Grounding DINO, never trained on this data, came close (0.375). A tenth of the labels did about as well as all of
+  them (0.377 against 0.380).
 
 ## Data and compute
 
@@ -45,7 +64,59 @@ animal, name it correctly and draw a tight box. AP50 is a looser version that ac
 by at least half. In the dead-fish results, *precision* is the share of "dead" calls that were right, and *recall* is
 the share of dead fish that were found.
 
-## 1. Image enhancement: nicer to look at, no better to detect
+## 1. Why you can trust these numbers
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="figures/split_diagram-dark.svg">
+    <img src="figures/split_diagram.svg" alt="Diagram: with a random-frame split the score is 0.72, with whole videos kept apart it is 0.31, for the same model and the same test frames.">
+  </picture>
+</p>
+
+Published scores on these datasets look better than they are, so the first job was an honest test set.
+
+Brackish frames come from short videos at 15 frames per second, so neighbouring frames look almost the same. The
+Roboflow export puts every one of the 89 videos into training, validation and test at once. All 1,468 of its test
+frames come from videos that are also in training. The split script in the original release shuffles frames at
+random too.
+
+I re-split Brackish by video: 64 videos for training (10,387 frames), 10 for validation (1,544) and 15 for testing
+(2,743). I tried 200 random shuffles of the videos and kept the one where each animal's share of the test and
+validation sets came closest to 20% and 10%. Rare animals still appear in only a few videos, so the scores for
+jellyfish (74 boxes) and shrimp (109 boxes) are noisy.
+
+To check that the gap comes from the split and nothing else, I ran a controlled test. There was one fixed test set:
+half the frames of the 15 test videos, 1,371 frames. There were two training sets, each with 8,829 frames. The only
+difference was that the second one included 1,017 frames from the other half of the test videos.
+
+| YOLO26-S trained on | AP | AP50 |
+|---|---|---|
+| training videos only | 0.314 | 0.524 |
+| training videos plus frames from the test videos | 0.721 | 0.976 |
+
+The model, the settings and the test frames were the same. The pattern also shows up inside a single model. Scored on
+frames set aside from the videos it trained on, it got 0.749. On new videos it got 0.310.
+
+**RAS-MortDB, split over time.** This is the dataset behind the dead-fish results. Its published split picks
+time-lapse photos at random, so every recording session in the test set also appears in training. I kept the photos
+in time order instead. I trained on the first 15 sessions, validated on the 16th and tested on the last 4 (300 photos,
+3 to 22 December 2022). Every dead-fish number on this page comes from those last 4 sessions.
+
+| Model | Test photos | AP | AP50 |
+|---|---|---|---|
+| authors' released weights | authors' random test set | 0.685 | 0.947 |
+| YOLO26-S on the authors' random split | authors' random test set | 0.681 | 0.949 |
+| YOLO26-S on the first 15 sessions | last 4 sessions | 0.534 | 0.827 |
+
+There are two caveats. First, the time-ordered training set is smaller: 1,585 unique photos, against 2,800 training
+photos in the published split, which include Roboflow's augmented copies. So part of the drop comes from having less
+data. Second, a near-duplicate check is weak evidence on this dataset. 83% of the authors' test photos have a
+near-identical photo in training, but so do 74% of my later-session photos, because the camera never moves. The
+time-ordered split is closer to how a farm would use a model: trained on past weeks, run on the next ones.
+
+## 2. Hand-built tricks that did not help
+
+### Colour correction
 
 <table>
   <tr><th>As filmed</th><th>CLAHE</th></tr>
@@ -64,7 +135,7 @@ NAFNet did learn something. On 90 UIEB photos it never trained on, it scored a P
 the uncorrected photo (higher means closer to the reference). Published methods report about 24.7 dB on UIEB's
 standard 90-photo test set, so this is a fair result, not a top one.
 
-Better-looking images did not give better detection. Here is YOLO26-S on the 15 test videos described in section 2 (AP):
+Better-looking images did not give better detection. Here is YOLO26-S on the 15 Brackish test videos (AP):
 
 | Trained on ↓ / tested on → | raw | CLAHE | NAFNet |
 |---|---|---|---|
@@ -76,53 +147,35 @@ When the training and test images match (bold), correction moves the score by 0.
 be run-to-run noise, and I ran each setting once. When they don't match, the score drops by 0.05 to 0.08. A detector
 gets used to the colours it was trained on. Fixing the colours doesn't tell it anything new about the animals.
 
-## 2. The test split matters more than the model
+### Dead-fish shortcuts
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="figures/split_diagram-dark.svg">
-    <img src="figures/split_diagram.svg" alt="Diagram: with a random-frame split the score is 0.72, with whole videos kept apart it is 0.31, for the same model and the same test frames.">
-  </picture>
-</p>
+There is little public data on dead fish. I found no public video of dead fish in sea cages, so I tried to get around
+the gap. Here is how each shortcut did on the later RAS-MortDB sessions (300 photos, 933 dead fish), next to a plain
+detector trained on real farm photos:
 
-Brackish frames come from short videos at 15 frames per second, so neighbouring frames look almost the same. The
-Roboflow export puts every one of the 89 videos into training, validation and test at once. All 1,468 of its test
-frames come from videos that are also in training. The split script in the original release shuffles frames at
-random too.
-
-I re-split Brackish by video: 64 videos for training (10,387 frames), 10 for validation (1,544) and 15 for testing
-(2,743). I tried 200 random shuffles of the videos and kept the one where each animal's share of the test and
-validation sets came closest to 20% and 10%. Rare animals still appear in only a few videos, so the scores for jellyfish (74 boxes) and shrimp (109 boxes) are noisy.
-
-To check that the gap comes from the split and nothing else, I ran a controlled test. There was one fixed test set:
-half the frames of the 15 test videos, 1,371 frames. There were two training sets, each with 8,829 frames. The only
-difference was that the second one included 1,017 frames from the other half of the test videos.
-
-| YOLO26-S trained on | AP | AP50 |
+| Approach | Dead-fish AP50 | Precision / recall at confidence 0.5 |
 |---|---|---|
-| training videos only | 0.314 | 0.524 |
-| training videos plus frames from the test videos | 0.721 | 0.976 |
+| YOLO26-S trained on real photos from the first 15 sessions (for reference) | 0.901 | 0.94 / 0.79 |
+| same, but a dead fish must be in the same place in the neighbouring photo | 0.497 | 0.97 / 0.41 |
+| Grounding DINO, prompt "dead fish" | 0.454 | 0.80 / 0.06 |
+| Grounding DINO finds fish, then CLIP decides dead or alive | 0.240 | no boxes above 0.5 |
+| YOLO26-S trained on synthetic dead fish | 0.000 | 0 / 0 |
 
-The model, the settings and the test frames were the same. The pattern also shows up inside a single model. Scored on
-frames set aside from the videos it trained on, it got 0.749. On new videos it got 0.310.
+**The stay-put rule.** A dead fish can't swim off, so I expected it to be in the same place in the next photo. In this
+data, only 13.9% of dead fish were in the same place 15 to 120 minutes later (5.9% of live fish). Dead fish collect at
+the drain, and the current keeps moving them. The idea may still work over seconds of real video, where a dead fish
+shows no gill or fin movement. I had no real video of dead fish to test it on. A simulation, with synthetic dead fish
+pasted into Brackish video, was too easy to tell me anything.
 
-**RAS-MortDB, split over time.** The published split picks time-lapse photos at random, so every recording session
-in the test set also appears in training. I kept the photos in time order instead. I trained on the first 15 sessions, validated on the
-16th and tested on the last 4 (300 photos, 3 to 22 December 2022).
+**Synthetic dead fish.** I pasted museum photos of preserved fish onto real Brackish frames, with a model of how water
+changes colour plus a net texture. The detector trained on them rarely raised a false alarm on normal video (7.7 per
+1,000 frames), but it found none of the real dead trout. Museum fish are photographed from the side on a white table.
+Dead trout on a drain plate are seen from above, pale and bent.
 
-| Model | Test photos | AP | AP50 |
-|---|---|---|---|
-| authors' released weights | authors' random test set | 0.685 | 0.947 |
-| YOLO26-S on the authors' random split | authors' random test set | 0.681 | 0.949 |
-| YOLO26-S on the first 15 sessions | last 4 sessions | 0.534 | 0.827 |
+**Asking for "dead fish" by name.** On Brackish video with no dead fish in it, Grounding DINO's "dead fish" prompt
+fired on 47.6% of frames.
 
-There are two caveats. First, the time-ordered training set is smaller: 1,585 unique photos, against 2,800 training
-photos in the published split, which include Roboflow's augmented copies. So part of the drop comes from having less data. Second, a
-near-duplicate check is weak evidence on this dataset. 83% of the authors' test photos have a near-identical photo in
-training, but so do 74% of my later-session photos, because the camera never moves. The time-ordered split is closer
-to how a farm would use a model: trained on past weeks, run on the next ones.
-
-## 3. Which detector
+## 3. What small models do well: find and box
 
 <p align="center">
   <picture>
@@ -155,11 +208,10 @@ trained YOLO26-S on them. No human-drawn box was used. It matched the same model
 against 0.294). I also tried keeping only boxes that persist across neighbouring frames. That made the labels more
 accurate (precision against the human labels rose from 0.59 to 0.64) but the trained model slightly worse (0.281).
 
-On the validation videos, YOLO26-L peaked at epoch 24 (0.312) and ended at 0.267 after 50 epochs, which suggests it
-was memorising the training videos. Running YOLO26-S at 1280 px instead of 640 px did not help (0.275), so image size does
-not explain why it trails Grounding DINO.
-
-## 4. How many labels you need
+In the YOLO family, the 2021 YOLOX-L (0.331) beat the 2026 YOLO26-L (0.301). On the validation videos, YOLO26-L peaked
+at epoch 24 (0.312) and ended at 0.267 after 50 epochs, which suggests it was memorising the training videos. Running
+YOLO26-S at 1280 px instead of 640 px did not help (0.275), so image size does not explain why it trails Grounding
+DINO.
 
 <p align="center">
   <picture>
@@ -168,53 +220,22 @@ not explain why it trails Grounding DINO.
   </picture>
 </p>
 
-With 1,038 labelled frames (10%), RF-DETR-M scored 0.377. With all 10,387 it scored 0.380. YOLO26-L went from 0.307
-to 0.301. At 1% (103 frames), both dropped clearly. My reading is that 64 training videos hold many near-identical
-frames, so after the first thousand, extra labels add little. More videos would probably help more than more frames.
+Labels go further than you might think. With 1,038 labelled frames (10%), RF-DETR-M scored 0.377. With all 10,387 it
+scored 0.380. YOLO26-L went from 0.307 to 0.301. At 1% (103 frames), both dropped clearly. My reading is that 64
+training videos hold many near-identical frames, so after the first thousand, extra labels add little. More videos
+would probably help more than more frames.
 
-## 5. Dead fish
+On the farm data, a small detector trained on real photos was also good at the dead-fish job itself: dead-fish AP50
+0.90, with 94% of its "dead" calls right and 79% of dead fish found at confidence 0.5. That makes it a good first stage.
 
-Removing dead fish is daily work on every farm, and the dead-fish count is one of the main numbers a farm tracks. I
-wanted to see how far public data gets you.
+## 4. Large models plus a workflow
 
-There isn't much. I found no public video of dead fish in sea cages. RAS-MortDB is the closest: a real farm, real
-deaths and a camera over the drain plate of a trout tank. Everything below uses its later-session test set (300
-photos, 933 dead fish).
+Back to the opening claim, in detail.
 
-### What did not work
-
-| Approach | Dead-fish AP50 | Precision / recall at confidence 0.5 |
-|---|---|---|
-| YOLO26-S trained on the first 15 sessions (for reference) | 0.901 | 0.94 / 0.79 |
-| same, but a dead fish must be in the same place in the neighbouring photo | 0.497 | 0.97 / 0.41 |
-| Grounding DINO, prompt "dead fish" | 0.454 | 0.80 / 0.06 |
-| Grounding DINO finds fish, then CLIP decides dead or alive | 0.240 | no boxes above 0.5 |
-| YOLO26-S trained on synthetic dead fish | 0.000 | 0 / 0 |
-
-**The stay-put rule.** A dead fish can't swim off, so I expected it to be in the same place in the next photo.
-In this data, only 13.9% of dead fish were in the same place 15 to 120 minutes later (5.9% of live fish). Dead fish
-collect at the drain, and the current keeps moving them. The idea may still work over seconds of real video, where a
-dead fish shows no gill or fin movement. I had no real video of dead fish to test it on. A simulation, with synthetic
-dead fish pasted into Brackish video, was too easy to tell me anything.
-
-**Synthetic dead fish.** I pasted museum photos of preserved fish onto real Brackish frames, with a model of how water
-changes colour plus a net texture. The detector trained on them rarely raised a false alarm on normal video (7.7 per
-1,000 frames), but it found none of the real dead trout. Museum fish are photographed from the side on a white table.
-Dead trout on a drain plate are seen from above, pale and bent.
-
-**Asking for "dead fish" by name.** On Brackish video with no dead fish in it, Grounding DINO's "dead fish" prompt fired on
-47.6% of frames.
-
-### What worked
-
-A normal detector trained on real farm photos worked. Its dead-fish AP50 was 0.90. At confidence 0.5,
-94% of its "dead" calls were right and it found 79% of dead fish.
-
-Large multimodal models also worked when given a short checklist. I cut out 120 fish from the later-session photos (60
-dead, 60 alive). Each one became three tiles: the whole photo with the fish boxed, a close-up, and the same spot in the
-neighbouring photo. Every model got [the same checklist](data/dead-or-alive-120/prompt_frontier_models.txt): belly
-up and pale, lying on the plate, body rigid, no motion blur, and so on. Each one judged all 120 without seeing the
-labels. The labels stayed sealed until every model had answered.
+**The test.** I cut out 120 fish from the later-session photos, 60 dead and 60 alive. Each one became three tiles:
+the whole photo with the fish boxed, a close-up, and the same spot in the neighbouring photo. Every model got
+[the same checklist](data/dead-or-alive-120/prompt_frontier_models.txt): belly up and pale, lying on the plate, body
+rigid, no motion blur, and so on. The labels stayed sealed until every model had answered.
 
 | Dead (all models right) | Alive (all models right) | Labelled dead, all three large models said alive |
 |---|---|---|
@@ -227,22 +248,44 @@ labels. The labels stayed sealed until every model had answered.
   </picture>
 </p>
 
-The three large models scored 82 to 95%. Their majority vote scored 96%: 98% of its "dead" calls were right, and it
-found 93% of dead fish. Qwen3-VL scored 50 to 52% at every size. With the checklist, the 2B model called every fish
-dead and the 8B model called every fish alive. Without it they did no better (45 to 51%). Only 2 of the 120 fish
-fooled all three large models, and at least one of them (the right-hand example above) looks like a labelling error.
+**Large against small.** The three large models scored 82 to 95%. Qwen3-VL scored 50 to 52% at every size, and the
+checklist did not rescue it: with the checklist, the 2B model called every fish dead and the 8B model called every
+fish alive. Without it they scored 45 to 51%. The gap is not a matter of prompting. The small models could not use the
+checklist at all.
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="figures/pipeline-dark.svg">
-    <img src="figures/pipeline.svg" alt="Diagram: camera photo, then a small detector that boxes every fish (catches 93% of dead fish), then three large models vote on each box (98% precision, 93% recall), then an alarm. Estimated end to end: 87% of dead fish found, 98% of alarms real.">
-  </picture>
-</p>
+**Three models are safer than one.** The three large models gave the same answer on 90 of the 120 fish, and were right
+on 88 of those (98%). On the 30 fish where they split, the majority was right on 27. Overall the vote scored 96%: 98%
+of its "dead" calls were right, and it found 93% of dead fish. Only 2 fish fooled all three, and at least one of them
+(the right-hand example above) looks like a labelling error. That suggests a simple rule for a farm: act on its own
+when all three agree, and send the fish to a person when they don't, about one fish in four on this test.
 
-Putting the two together gives a possible design. A small detector on site boxes every fish, dead or alive. At a low
-confidence threshold (0.1) it boxes 93% of dead fish, with about 6 boxes per photo. The large models then check each box. Multiplying the two
-stages gives about 87% of dead fish found, with about 98% of alarms real. That figure is an estimate: the votes were
-measured on hand-drawn boxes, and I did not run the full chain.
+**The first stage sets the ceiling.** A dead fish the detector misses never reaches the large models. Lowering the
+detector's confidence threshold catches more dead fish but sends more boxes up for judging:
+
+| First stage | Dead fish boxed | Boxes per photo |
+|---|---|---|
+| YOLO26-S, trained on real farm photos, confidence 0.5 | 83.5% | 3.3 |
+| same, confidence 0.25 | 90.2% | 4.4 |
+| same, confidence 0.1 | 93.2% | 6.0 |
+| Grounding DINO, no training, confidence 0.1 | 86.5% | 22.9 |
+
+The trained small detector is the better first stage: more dead fish for a quarter of the boxes. At confidence 0.1,
+multiplying the two stages gives about 87% of dead fish found (0.932 × 0.933), with about 98% of alarms real.
+
+**What is still open.** That 87% is an estimate. The large models were tested on hand-drawn boxes around real fish. A
+real first stage also sends looser boxes and boxes around things that are not fish, which could change their accuracy
+in either direction. Running the full chain on the later sessions is the obvious next step, and I have left it open.
+
+This is where the opening comes back. The cheap, repetitive work of finding every fish went to a small model trained
+on real data. The one judgement that is costly to get wrong went to the largest models available. Nothing hand-built
+made it into the design.
+
+## Limits
+
+- One run per setting, so there are no error bars. Differences of about 0.01 AP should be read as ties.
+- Each dataset comes from one site and one camera.
+- I did not test tracking, speed on edge devices, or an unpaired GAN enhancer (the CUT run did not finish).
+- The dead-fish chain was not run end to end, and the 120-fish test uses hand-drawn boxes.
 
 ## What's in this repo
 
@@ -251,11 +294,11 @@ data/
   splits/               split definitions as file lists (no images)
     brackish_by_video.json        videos and frames in train / val / test
     brackish_label_subsets.json   the 1% and 10% training subsets
-    brackish_leakage_test.json    the controlled split test from section 2
-    rasmort_by_time.json          capture sessions and dates per split
+    brackish_leakage_test.json    the controlled split test from section 1
+    rasmort_by_time.json          recording sessions and dates per split
     fishvista_specimens_used.csv  the museum photos used, with license and source URL
   audits/               video overlap in the Roboflow export, near-duplicate checks
-  dead-or-alive-120/    the 120 panels, labels, every model's answers, scores and the prompt
+  dead-or-alive-120/    the 120 three-tile images, labels, every model's answers, scores and the prompt
 results/
   *.csv                 the tables in this README
   raw/                  one JSON per run, with per-class scores
@@ -282,35 +325,22 @@ bash scripts/get_rasmort.sh        # RAS-MortDB from Zenodo, checksum verified
 After that, run the command lists in `scripts/as_run/`. `gpu1*.sh` to `gpu4*.sh` were four machines working in
 parallel. `ras.sh`, `dead.sh`, `video.sh` and `df3.sh` are the dead-fish runs. Model weights are not included.
 
-## Limits
-
-- One run per setting, so there are no error bars. Differences of about 0.01 AP should be read as ties.
-- Each dataset comes from one site and one camera.
-- I did not test tracking, speed on edge devices, or an unpaired GAN enhancer (the CUT run did not finish).
-- The dead-fish chain was not run end to end, and the 120-fish test uses hand-drawn boxes.
-
-## The Bitter Lesson, in small
-
-This matches Rich Sutton's [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). The
-hand-built ideas didn't help: colour correction, synthetic dead fish, the stay-put rule. Learning from real data did,
-and so did the largest general models.
-
 ## How this was made
 
-Claude Code wrote the code, ran every experiment on rented cloud GPUs and drafted this page and the video. I
-chose what to test, steered the work toward the dead-fish problem, and checked the numbers. Before the runs, two other
-large models reviewed the plan with web search. Their reviews led to the controlled split test and to the train/test grid
-in the enhancement section.
+Claude Code wrote the code, ran every experiment on rented cloud GPUs and drafted this page and the video. I chose
+what to test, steered the work toward the dead-fish problem, and checked the numbers. Before the runs, two other large
+models reviewed the plan with web search. Their reviews led to the controlled split test and to the train/test grid in
+the colour-correction section.
 
 ## Licenses and credits
 
 Code in this repo is MIT licensed. The split files are lists of file names from Brackish and RAS-MortDB.
 
-- The 120 panels in `data/dead-or-alive-120/` and the example images in `figures/` are crops of RAS-MortDB photos
-  (CC BY 4.0).
-- The enhancement stills, the GIF and the video are adapted from Brackish frames. Brackish is CC BY-SA 4.0 on the
-  authors' [Kaggle page](https://www.kaggle.com/datasets/aalborguniversity/brackish-dataset) (the Hugging Face copy
-  says CC BY 4.0), so these are shared under CC BY-SA 4.0.
+- The 120 three-tile images in `data/dead-or-alive-120/` and the example images in `figures/` are crops of RAS-MortDB
+  photos (CC BY 4.0).
+- The colour-correction stills, the GIF and the video are adapted from Brackish frames. Brackish is CC BY-SA 4.0 on
+  the authors' [Kaggle page](https://www.kaggle.com/datasets/aalborguniversity/brackish-dataset) (the Hugging Face
+  copy says CC BY 4.0), so these are shared under CC BY-SA 4.0.
 
 Credits:
 
